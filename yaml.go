@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"io"
 	"reflect"
+	"runtime/debug"
 	"strings"
 	"sync"
 )
@@ -246,6 +247,8 @@ func handleErr(err *error) {
 		if e, ok := v.(yamlError); ok {
 			*err = e.err
 		} else {
+			fmt.Println("HALP IM IN A LIBRARY!!")
+			debug.PrintStack()
 			panic(v)
 		}
 	}

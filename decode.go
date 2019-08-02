@@ -7,6 +7,7 @@ import (
 	"io"
 	"math"
 	"reflect"
+	"runtime/debug"
 	"strconv"
 	"time"
 )
@@ -155,7 +156,11 @@ func (p *parser) parse() *node {
 		// Happens when attempting to decode an empty buffer.
 		return nil
 	default:
-		panic("attempted to parse unknown event: " + p.event.typ.String())
+		fmt.Println("What are we parsing")
+		fmt.Printf("go rep: %#v\n", p)
+		fmt.Printf("values: %+v\n", p)
+		debug.PrintStack()
+		panic("attempted to parse unknown adsfjsfds: " + p.event.typ.String())
 	}
 }
 
